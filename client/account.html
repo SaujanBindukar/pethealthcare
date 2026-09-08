@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account | Pet Health Care</title>
+    <link rel="stylesheet" href="account.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="index.html"><span>+</span>Pet health care</a>
+      <nav>
+        <a href="index.html#home">Home</a><a href="index.html#care">Care</a
+        ><a href="index.html#breeds">Dogs Breed</a
+        ><a href="index.html#services">Services</a
+        ><a class="active" href="account.html">Account ↗</a>
+      </nav>
+    </header>
+    <main>
+      <section class="intro">
+        <small>YOUR CARE SPACE</small>
+        <h1>Good care<br /><i>starts with hello.</i></h1>
+        <p>
+          Keep your pet's details close and make every visit feel a little
+          easier.
+        </p>
+      </section>
+      <section class="panel">
+        <div class="tabs">
+          <button class="active" data-mode="login">Log in</button
+          ><button data-mode="register">Register</button>
+        </div>
+        <form>
+          <label for="email">Email address</label
+          ><input
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            required
+          /><label for="password">Password</label
+          ><input
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            required
+          />
+          <div class="row">
+            <label><input type="checkbox" /> Remember me</label
+            ><a href="#">Forgot password?</a>
+          </div>
+          <button class="submit" type="submit">Log in <b>→</b></button>
+        </form>
+        <p class="footnote">
+          New here? <a href="#" data-switch> Create an account</a>
+        </p>
+      </section>
+    </main>
+    <script src="account.js"></script>
+  </body>
+</html>
