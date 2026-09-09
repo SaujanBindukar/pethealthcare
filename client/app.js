@@ -31,7 +31,7 @@ function guideLink(name) {
 function guideCard(guide) {
   const name = guide.name.toLowerCase();
   const card = document.createElement("a");
-  card.href = guideLink(guide.name);
+  card.href = `guide.html?id=${encodeURIComponent(guide.id)}`;
 
   const photo = document.createElement("div");
   photo.className = `care-photo ${name}`;
