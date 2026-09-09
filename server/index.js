@@ -5,10 +5,13 @@ const cors = require("cors");
 //this is the connection to the database
 const database = require("./database/database");
 
+const authRoutes = require("./routes/auth");
+
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use("/api/auth", authRoutes);
 
 app.get("/api/species", async (req, res) => {
   try {
@@ -42,7 +45,8 @@ app.get("/api/species/:id/sections", async (req, res) => {
     const questionsBySection = new Map();
 
     questions.forEach((question) => {
-      const sectionQuestions = questionsBySection.get(question.section_id) || [];
+      const sectionQuestions =
+        questionsBySection.get(question.section_id) || [];
       sectionQuestions.push(question);
       questionsBySection.set(question.section_id, sectionQuestions);
     });
