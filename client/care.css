@@ -1,0 +1,110 @@
+.care-section {
+  background: var(--surface);
+  padding: 95px 7vw;
+}
+.care-section .section-intro {
+  text-align: center;
+}
+.care-section .section-intro p {
+  margin-left: auto;
+  margin-right: auto;
+}
+.care-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(4, 1fr);
+  margin: auto;
+  max-width: 1100px;
+}
+.care-grid > a {
+  background: #efeee6;
+  padding: 12px;
+}
+.care-photo {
+  align-items: center;
+  background: #d7e4d2;
+  color: var(--green);
+  display: flex;
+  height: 220px;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  position: relative;
+  text-transform: uppercase;
+}
+.care-photo::after {
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  content: "";
+  height: 55%;
+  position: absolute;
+  width: 40%;
+}
+.care-photo img {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+.care-status {
+  color: var(--green);
+  font-size: 13px;
+  margin: 28px auto 0;
+  max-width: 1100px;
+  text-align: center;
+}
+.care-photo.cat {
+  background: #e9dfd5;
+  color: #98745e;
+}
+.care-photo.fish {
+  background: #cfe1e0;
+  color: #518181;
+}
+.care-photo.bird {
+  background: #e9dfc2;
+  color: #a08449;
+}
+.care-photo.has-photo {
+  color: transparent;
+}
+.care-photo.has-photo::after {
+  display: none;
+}
+.care-grid h3 {
+  font:
+    600 27px Fraunces,
+    serif;
+  margin: 16px 4px 5px;
+}
+.care-grid h3 b {
+  float: right;
+  font: 20px "DM Sans";
+}
+
+@media (max-width: 700px) {
+  .care-section {
+    padding: 65px 5vw;
+  }
+  .care-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .care-photo {
+    height: 170px;
+  }
+}
+
+@media (max-width: 480px) {
+  .care-section {
+    padding-bottom: 52px;
+    padding-top: 52px;
+  }
+  .care-grid {
+    grid-template-columns: 1fr;
+  }
+  .care-photo {
+    height: 210px;
+  }
+}

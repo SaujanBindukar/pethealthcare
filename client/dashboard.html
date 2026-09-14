@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Pet Health Care</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span>+</span>Pet health care</a>
+      <button id="logout" type="button">Log out <b>↗</b></button>
+    </header>
+    <main>
+      <section class="welcome">
+        <small>YOUR CARE SPACE</small>
+        <h1>Welcome back, <i id="user-name">friend</i>.</h1>
+        <p>Everything you need to make your pet's care feel a little easier.</p>
+      </section>
+      <section class="dashboard-grid">
+        <a class="dashboard-card primary-card" href="index.html#care">
+          <small>EXPLORE</small>
+          <h2>Care guides</h2>
+          <p>Find practical guidance for your pet's everyday health.</p>
+          <b>Browse guides <span>→</span></b>
+        </a>
+        <a class="dashboard-card" href="index.html#services">
+          <small>SUPPORT</small>
+          <h2>Pet services</h2>
+          <p>Discover thoughtful services for the next step in their care.</p>
+          <b>View services <span>→</span></b>
+        </a>
+      </section>
+    </main>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

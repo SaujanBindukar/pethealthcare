@@ -1,0 +1,58 @@
+.breeds-section {
+  background: var(--cream);
+  color: var(--ink);
+  display: grid;
+  gap: 8vw;
+  grid-template-columns: 1fr 1fr;
+  padding: 90px 7vw;
+}
+.breeds-section small,
+.breeds-section i {
+  color: var(--green);
+}
+.breeds-section h2 {
+  font:
+    600 clamp(44px, 5vw, 68px)/0.95 Fraunces,
+    serif;
+  letter-spacing: -0.05em;
+  margin: 18px 0;
+}
+.breeds-section i {
+  font-style: normal;
+}
+.breeds-section p {
+  color: var(--muted);
+  max-width: 300px;
+}
+.breed-list article {
+  border-bottom: 1px solid #d9ded4;
+  padding: 14px 0;
+}
+.breed-list span {
+  color: var(--green);
+  font-size: 12px;
+}
+.breed-list h3 {
+  font:
+    600 26px Fraunces,
+    serif;
+  margin: 12px 0 4px;
+}
+.breed-list p {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .breeds-section {
+    gap: 25px;
+    grid-template-columns: 1fr;
+    padding: 65px 5vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .breeds-section {
+    padding-bottom: 52px;
+    padding-top: 52px;
+  }
+}

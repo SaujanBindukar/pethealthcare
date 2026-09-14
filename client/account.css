@@ -131,8 +131,12 @@ main {
   font-weight: 700;
   margin-bottom: 8px;
 }
+.panel [hidden] {
+  display: none;
+}
 .panel input[type="email"],
-.panel input[type="password"] {
+.panel input[type="password"],
+.panel input[type="text"] {
   border: 1px solid var(--line);
   font: inherit;
   margin-bottom: 20px;
@@ -167,6 +171,19 @@ main {
   padding: 15px;
   text-align: left;
   width: 100%;
+}
+.submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+.form-status {
+  color: var(--green);
+  font-size: 13px;
+  min-height: 20px;
+  text-align: center;
+}
+.form-status.error {
+  color: #a94b3d;
 }
 .submit b {
   float: right;
