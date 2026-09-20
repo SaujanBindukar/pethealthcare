@@ -72,7 +72,7 @@ form.addEventListener("submit", async (event) => {
 
     localStorage.setItem("petHealthToken", result.token);
     localStorage.setItem("petHealthUser", JSON.stringify(result.user));
-    window.location.href = "dashboard.html";
+    window.location.href = "../dashboard/dashboard.html";
   } catch (error) {
     status.textContent = error.message;
     status.classList.add("error");

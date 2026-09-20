@@ -10,7 +10,7 @@ const API_BASE = "http://localhost:3000";
 let editingPetId = null;
 
 if (!token || !storedUser) {
-  window.location.replace("account.html");
+  window.location.replace("../account/account.html");
 } else {
   const user = JSON.parse(storedUser);
   document.querySelector("#profile-name").textContent = user.name;
@@ -65,7 +65,7 @@ function renderPets(pets) {
     openButton.textContent = "Open →";
     openButton.addEventListener(
       "click",
-      () => (window.location.href = `pet.html?id=${pet.pet_id}`),
+      () => (window.location.href = `../pets/pet.html?id=${pet.pet_id}`),
     );
 
     const editButton = document.createElement("button");
@@ -185,5 +185,5 @@ document.querySelector("#pet-cancel").addEventListener("click", stopEditingPet);
 document.querySelector("#logout").addEventListener("click", () => {
   localStorage.removeItem("petHealthToken");
   localStorage.removeItem("petHealthUser");
-  window.location.replace("account.html");
+  window.location.replace("../account/account.html");
 });

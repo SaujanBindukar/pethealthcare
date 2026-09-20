@@ -13,7 +13,7 @@ let pet = null;
 let editingLogId = null;
 
 if (!token || !petId) {
-  window.location.replace("dashboard.html");
+  window.location.replace("../dashboard/dashboard.html");
 }
 
 async function getJson(url, options) {
@@ -177,7 +177,7 @@ document.querySelector("#log-date").value = new Date()
 document.querySelector("#logout").addEventListener("click", () => {
   localStorage.removeItem("petHealthToken");
   localStorage.removeItem("petHealthUser");
-  window.location.replace("account.html");
+  window.location.replace("../account/account.html");
 });
 
 loadPet();

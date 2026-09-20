@@ -10,10 +10,13 @@
   margin: 28px 0 55px;
 }
 .guide-hero-image {
+  aspect-ratio: 16 / 7;
+  background: var(--sage);
   display: block;
-  height: 260px;
+  height: clamp(260px, 38vw, 420px);
   margin-top: 28px;
   object-fit: cover;
+  object-position: center;
   width: 100%;
 }
 .guide-hero-image + h1 {
@@ -43,4 +46,11 @@
 }
 .guide-question p {
   font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .guide-hero-image {
+    aspect-ratio: 4 / 3;
+    height: 240px;
+  }
 }

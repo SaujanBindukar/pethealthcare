@@ -115,7 +115,7 @@ async function loadBreedGuide() {
       guideContent,
       `${breed.name} care plan`,
       breed.description,
-      breed.image_path,
+      breed.image_url,
     );
 
     if (!breed.sections.length) {

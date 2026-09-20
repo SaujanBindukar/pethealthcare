@@ -35,7 +35,7 @@ function guideLink(name) {
 function guideCard(guide) {
   const name = guide.name.toLowerCase();
   const card = document.createElement("a");
-  card.href = `guide.html?id=${encodeURIComponent(guide.id)}`;
+  card.href = `../guides/guide.html?id=${encodeURIComponent(guide.id)}`;
 
   const photo = document.createElement("div");
   photo.className = `care-photo ${name}`;
@@ -140,16 +140,17 @@ async function loadServices() {
 
 function breedCard(breed, index) {
   const card = document.createElement("a");
-  card.href = `guide.html?breed=${encodeURIComponent(breed.slug)}`;
+  card.href = `../guides/guide.html?breed=${encodeURIComponent(breed.slug)}`;
   card.className = "breed-card";
 
   const photo = document.createElement("div");
   photo.className = "breed-photo";
   photo.textContent = `${breed.name} image placeholder`;
 
-  if (breed.image_path) {
+  const imagePath = breed.image_url;
+  if (imagePath) {
     const image = document.createElement("img");
-    image.src = breed.image_path;
+    image.src = imagePath;
     image.alt = breed.name;
     image.loading = "lazy";
     image.addEventListener("error", () => {

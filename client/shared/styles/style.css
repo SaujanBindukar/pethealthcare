@@ -75,7 +75,7 @@ nav b {
 }
 .hero {
   align-items: center;
-  background: url("images/poster.jpeg") center / cover no-repeat;
+  background: url("../assets/images/poster.jpeg") center / cover no-repeat;
   display: grid;
   gap: 8vw;
   grid-template-columns: 0.75fr 1.25fr;
