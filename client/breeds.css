@@ -2,9 +2,10 @@
   background: var(--cream);
   color: var(--ink);
   display: grid;
-  gap: 8vw;
-  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  grid-template-columns: 1fr;
   padding: 90px 7vw;
+  text-align: center;
 }
 .breeds-section small,
 .breeds-section i {
@@ -24,29 +25,99 @@
   color: var(--muted);
   max-width: 300px;
 }
-.breed-list article {
-  border-bottom: 1px solid #d9ded4;
-  padding: 14px 0;
+.breeds-section > div:first-child {
+  max-width: 760px;
+  margin: 0 auto;
 }
-.breed-list span {
+.breeds-section > div:first-child p {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.breed-list {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-color: var(--green) transparent;
+}
+.breed-list .breed-card {
+  background: #efeee6;
+  display: block;
+  flex: 0 0 250px;
+  padding: 12px;
+  text-align: center;
+}
+.breed-list .breed-card:hover h3 {
   color: var(--green);
-  font-size: 12px;
+}
+.breed-photo {
+  align-items: center;
+  background: #d7e4d2;
+  color: var(--green);
+  display: flex;
+  font-size: 11px;
+  font-weight: 700;
+  height: 180px;
+  justify-content: center;
+  letter-spacing: 0.08em;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+}
+.breed-photo::after {
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  content: "";
+  height: 55%;
+  position: absolute;
+  width: 40%;
+}
+.breed-photo img {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+.breed-photo.has-photo {
+  color: transparent;
+}
+.breed-photo.has-photo::after {
+  display: none;
+}
+.breed-list .breed-status {
+  color: var(--muted);
+  margin: 14px 0;
 }
 .breed-list h3 {
   font:
     600 26px Fraunces,
     serif;
-  margin: 12px 0 4px;
+  margin: 16px 4px 5px;
+}
+.breed-list h3 b {
+  font: 20px "DM Sans";
+  margin-left: 8px;
 }
 .breed-list p {
-  margin: 0;
+  margin: 0 4px;
 }
 
 @media (max-width: 700px) {
   .breeds-section {
     gap: 25px;
-    grid-template-columns: 1fr;
     padding: 65px 5vw;
+  }
+  .breed-photo {
+    height: 170px;
+  }
+}
+
+@media (max-width: 900px) {
+  .breed-list {
+    justify-content: flex-start;
   }
 }
 
@@ -54,5 +125,8 @@
   .breeds-section {
     padding-bottom: 52px;
     padding-top: 52px;
+  }
+  .breed-photo {
+    height: 210px;
   }
 }

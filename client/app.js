@@ -24,6 +24,8 @@ const careGrid = document.querySelector("#care-grid");
 const careStatus = document.querySelector("#care-status");
 const serviceScroller = document.querySelector(".service-scroller");
 const serviceStatus = document.querySelector("#service-status");
+const breedList = document.querySelector("#breed-list");
+const breedStatus = document.querySelector("#breed-status");
 
 // Dog cards jump to the breed guide, every other species goes to services.
 function guideLink(name) {
@@ -136,5 +138,63 @@ async function loadServices() {
   }
 }
 
+function breedCard(breed, index) {
+  const card = document.createElement("a");
+  card.href = `guide.html?breed=${encodeURIComponent(breed.slug)}`;
+  card.className = "breed-card";
+
+  const photo = document.createElement("div");
+  photo.className = "breed-photo";
+  photo.textContent = `${breed.name} image placeholder`;
+
+  if (breed.image_path) {
+    const image = document.createElement("img");
+    image.src = breed.image_path;
+    image.alt = breed.name;
+    image.loading = "lazy";
+    image.addEventListener("error", () => {
+      image.remove();
+      photo.classList.remove("has-photo");
+    });
+    photo.classList.add("has-photo");
+    photo.append(image);
+  }
+
+  const name = document.createElement("h3");
+  name.textContent = breed.name;
+  const arrow = document.createElement("b");
+  arrow.textContent = "↗";
+  name.append(arrow);
+
+  const description = document.createElement("p");
+  description.textContent = breed.description;
+
+  card.append(photo, name, description);
+  return card;
+}
+
+async function loadBreeds() {
+  try {
+    const response = await fetch(`${API_BASE}/api/breeds`);
+    if (!response.ok) throw new Error(`Request failed (${response.status})`);
+
+    const breeds = await response.json();
+    breedList.replaceChildren(
+      ...(breeds.length
+        ? breeds.map(breedCard)
+        : [
+            Object.assign(document.createElement("p"), {
+              className: "breed-status",
+              textContent: "No dog breeds available yet.",
+            }),
+          ]),
+    );
+  } catch (error) {
+    console.error(error);
+    breedStatus.textContent = "We could not load dog breeds right now.";
+  }
+}
+
 loadGuides();
 loadServices();
+loadBreeds();
