@@ -40,6 +40,14 @@
           <small>DASHBOARD</small>
           <h1 id="dashboard-title">Your care space</h1>
           <p>Keep your pet's health details close and easy to manage.</p>
+          <div class="pet-list-header">
+            <h2>Your pets</h2>
+            <button id="refresh-pets" type="button" aria-label="Refresh pets">
+              ↻
+            </button>
+          </div>
+          <div id="pet-list" class="pet-list" aria-live="polite"></div>
+          <p id="pets-status" class="form-status"></p>
         </article>
         <article
           class="content-section"
