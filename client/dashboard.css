@@ -152,6 +152,18 @@ h1 {
   float: right;
   font-size: 18px;
 }
+.pet-form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+.form-status {
+  color: var(--green);
+  font-size: 13px;
+  min-height: 20px;
+}
+.form-status.error {
+  color: #a94b3d;
+}
 .profile-details {
   background: #fff;
   display: grid;

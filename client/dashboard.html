@@ -50,17 +50,23 @@
           <small>NEW PET</small>
           <h1 id="add-pet-title">Add a pet</h1>
           <p>Start a care profile for a new member of your family.</p>
-          <form class="pet-form">
+          <form id="pet-form" class="pet-form">
             <label for="pet-name">Pet name</label>
-            <input id="pet-name" type="text" placeholder="e.g. Luna" />
+            <input id="pet-name" type="text" placeholder="e.g. Luna" required />
             <label for="pet-type">Pet type</label>
-            <select id="pet-type">
+            <select id="pet-type" required>
               <option>Dog</option>
               <option>Cat</option>
               <option>Bird</option>
               <option>Fish</option>
             </select>
-            <button type="button">Save pet <b>→</b></button>
+            <button type="submit">Save pet <b>→</b></button>
+            <p
+              id="pet-status"
+              class="form-status"
+              role="status"
+              aria-live="polite"
+            ></p>
           </form>
         </article>
         <article

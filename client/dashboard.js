@@ -2,6 +2,9 @@ const token = localStorage.getItem("petHealthToken");
 const storedUser = localStorage.getItem("petHealthUser");
 const navLinks = document.querySelectorAll("[data-section]");
 const contentSections = document.querySelectorAll("[data-content]");
+const petForm = document.querySelector("#pet-form");
+const petStatus = document.querySelector("#pet-status");
+const API_BASE = "http://localhost:3000";
 
 if (!token || !storedUser) {
   window.location.replace("account.html");
@@ -32,6 +35,40 @@ navLinks.forEach((link) => {
 });
 
 showSection(window.location.hash.slice(1) || "dashboard");
+
+petForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const submitButton = petForm.querySelector("button");
+  submitButton.disabled = true;
+  petStatus.textContent = "Saving pet...";
+  petStatus.className = "form-status";
+
+  try {
+    const response = await fetch(`${API_BASE}/api/pets`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: document.querySelector("#pet-name").value,
+        species: document.querySelector("#pet-type").value,
+      }),
+    });
+    const result = await response.json();
+
+    if (!response.ok) throw new Error(result.error || "Could not save pet");
+
+    petForm.reset();
+    petStatus.textContent = `${result.pet.name} was added successfully.`;
+  } catch (error) {
+    petStatus.textContent = error.message;
+    petStatus.classList.add("error");
+  } finally {
+    submitButton.disabled = false;
+  }
+});
 
 document.querySelector("#logout").addEventListener("click", () => {
   localStorage.removeItem("petHealthToken");

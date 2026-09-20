@@ -6,12 +6,14 @@ const cors = require("cors");
 const database = require("./database/database");
 
 const authRoutes = require("./routes/auth");
+const petRoutes = require("./routes/pets");
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 app.use("/api/auth", authRoutes);
+app.use("/api/pets", petRoutes);
 
 app.get("/api/species", async (req, res) => {
   try {
