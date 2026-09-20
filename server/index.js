@@ -15,6 +15,20 @@ app.use(cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/pets", petRoutes);
 
+app.get("/api/services", async (req, res) => {
+  try {
+    const [services] = await database.query(
+      `SELECT service_id, service_type, name, phone, description
+       FROM care_services
+       ORDER BY display_order, name`,
+    );
+    res.json(services);
+  } catch (error) {
+    console.error("Service list failed:", error.message);
+    res.status(500).json({ error: "Could not fetch care services" });
+  }
+});
+
 app.get("/api/species", async (req, res) => {
   try {
     const [guides] = await database.query(

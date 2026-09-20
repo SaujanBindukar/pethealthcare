@@ -79,24 +79,24 @@
 .pet-heading {
   border-bottom: 1px solid #dfe2d8;
   margin-top: 0;
-  padding-bottom: 24px;
+  padding-bottom: 0;
 }
 .pet-heading h1 {
-  font-size: clamp(42px, 5vw, 60px);
-  margin-top: 12px;
-}
-.pet-heading h1 {
-  margin-bottom: 10px;
+  font-size: clamp(34px, 4vw, 48px);
+  margin: 1px 0 0;
 }
 .pet-heading p {
   margin: 0;
+}
+.pet-heading .form-status {
+  min-height: 0;
 }
 .logs-workspace {
   align-items: start;
   display: grid;
   gap: 28px;
-  grid-template-columns: minmax(300px, 1fr) minmax(320px, 1.15fr);
-  margin-top: 28px;
+  grid-template-columns: minmax(360px, 1.15fr) minmax(320px, 1fr);
+  margin-top: 12px;
   max-width: 920px;
 }
 .logs-header {
@@ -132,7 +132,8 @@
   max-width: none;
 }
 .pet-form input,
-.pet-form textarea {
+.pet-form textarea,
+.pet-form select {
   border-radius: 2px;
   outline: none;
   transition:
@@ -140,7 +141,8 @@
     box-shadow 160ms ease;
 }
 .pet-form input:focus,
-.pet-form textarea:focus {
+.pet-form textarea:focus,
+.pet-form select:focus {
   border-color: var(--green);
   box-shadow: 0 0 0 3px rgba(96, 123, 100, 0.14);
 }
@@ -151,6 +153,14 @@
   font: inherit;
   padding: 13px;
   resize: vertical;
+  width: 100%;
+}
+.pet-form select {
+  background: #fff;
+  border: 1px solid #d9ded4;
+  color: var(--ink);
+  font: inherit;
+  padding: 13px;
   width: 100%;
 }
 .log-list {
@@ -168,6 +178,20 @@
   color: var(--green);
   font-size: 12px;
   font-weight: 700;
+}
+.log-meta {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+.log-meta strong {
+  background: var(--sage);
+  color: var(--green);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 5px 8px;
+  text-transform: uppercase;
 }
 .log-item p {
   color: var(--ink);
