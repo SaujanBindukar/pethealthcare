@@ -13,7 +13,9 @@ function createToken(user) {
 }
 
 router.post("/signup", async (req, res) => {
-  const { name, email, password } = req.body || {};
+  const name = req.body?.name?.trim();
+  const email = req.body?.email?.trim().toLowerCase();
+  const password = req.body?.password;
 
   if (!name || !email || !password) {
     return res
@@ -37,9 +39,10 @@ router.post("/signup", async (req, res) => {
 
       const [result] = await connection.query(
         "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-        [name, email.toLowerCase(), hashed],
+        [name, email, hashed],
       );
       userId = result.insertId;
+      await connection.commit();
     } catch (error) {
       await connection.rollback();
       throw error;
@@ -47,7 +50,7 @@ router.post("/signup", async (req, res) => {
       connection.release();
     }
 
-    const user = { user_id: userId, name, email: email.toLowerCase() };
+    const user = { user_id: userId, name, email };
     res.status(201).json({ user, token: createToken(user) });
   } catch (error) {
     if (error.code === "ER_DUP_ENTRY") {
@@ -61,7 +64,8 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body || {};
+  const email = req.body?.email?.trim().toLowerCase();
+  const password = req.body?.password;
 
   if (!email || !password) {
     return res.status(400).json({ error: "Email and password are required" });
@@ -70,7 +74,7 @@ router.post("/login", async (req, res) => {
   try {
     const [rows] = await pool.query(
       "SELECT user_id, name, email, password FROM users WHERE email = ?",
-      [email.toLowerCase()],
+      [email],
     );
     const user = rows[0];
 
