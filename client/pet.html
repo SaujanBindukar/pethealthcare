@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet logs | Pet Health Care</title>
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="pet.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span>+</span>Pet health care</a>
+      <button id="logout" type="button">Log out <b>↗</b></button>
+    </header>
+    <main class="dashboard-layout">
+      <aside class="side-nav" aria-label="Dashboard navigation">
+        <small>YOUR CARE SPACE</small>
+        <nav>
+          <a href="dashboard.html#dashboard">
+            <span aria-hidden="true">▦</span>Dashboard
+          </a>
+          <a href="dashboard.html#add-pet">
+            <span aria-hidden="true">＋</span>Add Pet
+          </a>
+          <a href="dashboard.html#profile">
+            <span aria-hidden="true">○</span>Profile
+          </a>
+        </nav>
+      </aside>
+      <section class="dashboard-view pet-content">
+        <section class="pet-heading" aria-labelledby="pet-title">
+          <small id="pet-species">PET LOG</small>
+          <h1 id="pet-title">Loading pet...</h1>
+          <p
+            id="pet-status"
+            class="form-status"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </section>
+        <section class="logs-workspace" aria-label="Pet care logs">
+          <div class="log-form-panel">
+            <small>NEW ENTRY</small>
+            <h2>Add a log</h2>
+            <form id="log-form" class="pet-form">
+              <label for="log-entry">What happened?</label>
+              <textarea
+                id="log-entry"
+                rows="4"
+                placeholder="e.g. Took medication after breakfast"
+                required
+              ></textarea>
+              <label for="log-date">Date</label>
+              <input id="log-date" type="date" required />
+              <button type="submit">Save log <b>→</b></button>
+              <p
+                id="log-status"
+                class="form-status"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </form>
+          </div>
+          <div class="log-history">
+            <div class="logs-header">
+              <div>
+                <small>RECENT ACTIVITY</small>
+                <h2 id="logs-title">Care log</h2>
+              </div>
+            </div>
+            <div id="log-list" class="log-list" aria-live="polite"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="pet.js"></script>
+  </body>
+</html>

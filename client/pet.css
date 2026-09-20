@@ -1,0 +1,227 @@
+.pet-page {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 125px 5vw 90px;
+}
+.pet-layout {
+  display: grid;
+  gap: 56px;
+  grid-template-columns: 210px minmax(0, 1fr);
+}
+.pet-sidebar {
+  border-right: 1px solid #dfe2d8;
+  min-height: calc(100vh - 215px);
+  padding: 20px 28px 20px 0;
+}
+.care-nav {
+  display: grid;
+  gap: 7px;
+  margin-top: 18px;
+}
+.care-nav a {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 12px;
+  padding: 12px;
+}
+.care-nav a:hover {
+  background: var(--sage);
+  color: var(--ink);
+}
+.care-nav span {
+  color: var(--green);
+  font-size: 20px;
+  line-height: 1;
+  width: 18px;
+}
+.sidebar-label {
+  display: block;
+  margin-top: 42px;
+}
+.pet-nav {
+  display: grid;
+  gap: 7px;
+  margin-top: 18px;
+}
+.pet-nav a {
+  border-left: 3px solid transparent;
+  display: grid;
+  gap: 2px;
+  padding: 12px 12px;
+}
+.pet-nav a:hover,
+.pet-nav a.active {
+  background: var(--sage);
+  border-left-color: var(--green);
+}
+.pet-nav strong {
+  font-size: 14px;
+}
+.pet-nav span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.pet-content {
+  min-width: 0;
+  padding-top: 12px;
+}
+.back-link {
+  align-items: center;
+  color: var(--green);
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 8px;
+}
+.pet-heading {
+  border-bottom: 1px solid #dfe2d8;
+  margin-top: 0;
+  padding-bottom: 24px;
+}
+.pet-heading h1 {
+  font-size: clamp(42px, 5vw, 60px);
+  margin-top: 12px;
+}
+.pet-heading h1 {
+  margin-bottom: 10px;
+}
+.pet-heading p {
+  margin: 0;
+}
+.logs-workspace {
+  align-items: start;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(300px, 1fr) minmax(320px, 1.15fr);
+  margin-top: 28px;
+  max-width: 920px;
+}
+.logs-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.logs-header h2 {
+  font-family: Fraunces, serif;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0;
+}
+.log-form-panel,
+.log-history {
+  min-width: 0;
+}
+.log-form-panel {
+  background: var(--sage);
+  padding: 20px;
+  position: sticky;
+  top: 110px;
+}
+.log-form-panel h2,
+.log-history h2 {
+  font-family: Fraunces, serif;
+  font-size: 27px;
+  font-weight: 600;
+  margin: 10px 0 0;
+}
+.pet-form {
+  margin-top: 22px;
+  max-width: none;
+}
+.pet-form input,
+.pet-form textarea {
+  border-radius: 2px;
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+.pet-form input:focus,
+.pet-form textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(96, 123, 100, 0.14);
+}
+.pet-form textarea {
+  background: #fff;
+  border: 1px solid #d9ded4;
+  color: var(--ink);
+  font: inherit;
+  padding: 13px;
+  resize: vertical;
+  width: 100%;
+}
+.log-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+}
+.log-item {
+  background: #fff;
+  border-left: 3px solid var(--yellow);
+  box-shadow: 0 4px 16px rgba(36, 49, 43, 0.04);
+  padding: 20px 22px;
+}
+.log-item time {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+}
+.log-item p {
+  color: var(--ink);
+  line-height: 1.6;
+  margin: 8px 0 0;
+}
+.empty-state {
+  background: #fff;
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+  padding: 24px;
+}
+@media (max-width: 700px) {
+  .pet-page {
+    padding: 105px 5vw 55px;
+  }
+  .pet-layout {
+    display: block;
+  }
+  .pet-sidebar {
+    border-bottom: 1px solid #dfe2d8;
+    border-right: 0;
+    min-height: auto;
+    padding: 15px 0 20px;
+  }
+  .sidebar-label {
+    margin-top: 28px;
+  }
+  .care-nav {
+    display: flex;
+    overflow-x: auto;
+  }
+  .care-nav a {
+    flex: 0 0 auto;
+  }
+  .pet-nav {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .pet-nav a {
+    flex: 0 0 130px;
+  }
+  .pet-content {
+    margin-top: 10px;
+    padding-top: 12px;
+  }
+  .logs-workspace {
+    grid-template-columns: 1fr;
+    margin-top: 45px;
+  }
+  .log-form-panel {
+    padding: 20px;
+    position: static;
+  }
+}
