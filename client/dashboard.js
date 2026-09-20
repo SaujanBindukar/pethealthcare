@@ -7,6 +7,7 @@ const petStatus = document.querySelector("#pet-status");
 const petList = document.querySelector("#pet-list");
 const petsStatus = document.querySelector("#pets-status");
 const API_BASE = "http://localhost:3000";
+let editingPetId = null;
 
 if (!token || !storedUser) {
   window.location.replace("account.html");
@@ -47,16 +48,78 @@ function renderPets(pets) {
   }
 
   pets.forEach((pet) => {
-    const button = document.createElement("button");
-    button.className = "pet-card";
-    button.type = "button";
-    button.innerHTML = `<strong>${pet.name}</strong><span>${pet.species}</span><b>→</b>`;
-    button.addEventListener(
+    const card = document.createElement("article");
+    card.className = "pet-card";
+
+    const details = document.createElement("div");
+    const name = document.createElement("strong");
+    name.textContent = pet.name;
+    const species = document.createElement("span");
+    species.textContent = pet.species;
+    details.append(name, species);
+
+    const actions = document.createElement("div");
+    actions.className = "pet-card-actions";
+    const openButton = document.createElement("button");
+    openButton.type = "button";
+    openButton.textContent = "Open →";
+    openButton.addEventListener(
       "click",
       () => (window.location.href = `pet.html?id=${pet.pet_id}`),
     );
-    petList.append(button);
+
+    const editButton = document.createElement("button");
+    editButton.type = "button";
+    editButton.textContent = "Edit";
+    editButton.addEventListener("click", () => startEditingPet(pet));
+
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", async () => {
+      if (!window.confirm(`Delete ${pet.name} and its logs?`)) return;
+      deleteButton.disabled = true;
+      try {
+        const response = await fetch(`${API_BASE}/api/pets/${pet.pet_id}`, {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!response.ok) {
+          const result = await response.json();
+          throw new Error(result.error || "Could not delete pet");
+        }
+        await loadPets();
+      } catch (error) {
+        petsStatus.textContent = error.message;
+        petsStatus.className = "form-status error";
+        deleteButton.disabled = false;
+      }
+    });
+
+    actions.append(openButton, editButton, deleteButton);
+    card.append(details, actions);
+    petList.append(card);
   });
+}
+
+function startEditingPet(pet) {
+  editingPetId = pet.pet_id;
+  document.querySelector("#pet-name").value = pet.name;
+  document.querySelector("#pet-type").value = pet.species;
+  document.querySelector("#add-pet-title").textContent = "Edit pet";
+  document.querySelector("#pet-submit").innerHTML = "Update pet <b>→</b>";
+  document.querySelector("#pet-cancel").hidden = false;
+  window.location.hash = "add-pet";
+  showSection("add-pet");
+}
+
+function stopEditingPet() {
+  editingPetId = null;
+  petForm.reset();
+  document.querySelector("#add-pet-title").textContent = "Add a pet";
+  document.querySelector("#pet-submit").innerHTML = "Save pet <b>→</b>";
+  document.querySelector("#pet-cancel").hidden = true;
+  petStatus.textContent = "";
 }
 
 async function loadPets() {
@@ -83,27 +146,32 @@ petForm.addEventListener("submit", async (event) => {
 
   const submitButton = petForm.querySelector("button");
   submitButton.disabled = true;
-  petStatus.textContent = "Saving pet...";
+  petStatus.textContent = editingPetId ? "Updating pet..." : "Saving pet...";
   petStatus.className = "form-status";
 
   try {
-    const response = await fetch(`${API_BASE}/api/pets`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+    const response = await fetch(
+      `${API_BASE}/api/pets${editingPetId ? `/${editingPetId}` : ""}`,
+      {
+        method: editingPetId ? "PUT" : "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: document.querySelector("#pet-name").value,
+          species: document.querySelector("#pet-type").value,
+        }),
       },
-      body: JSON.stringify({
-        name: document.querySelector("#pet-name").value,
-        species: document.querySelector("#pet-type").value,
-      }),
-    });
+    );
     const result = await response.json();
 
     if (!response.ok) throw new Error(result.error || "Could not save pet");
 
-    petForm.reset();
-    petStatus.textContent = `${result.pet.name} was added successfully.`;
+    const message = editingPetId ? "updated" : "added";
+    stopEditingPet();
+    await loadPets();
+    petStatus.textContent = `${result.pet.name} was ${message} successfully.`;
   } catch (error) {
     petStatus.textContent = error.message;
     petStatus.classList.add("error");
@@ -111,6 +179,8 @@ petForm.addEventListener("submit", async (event) => {
     submitButton.disabled = false;
   }
 });
+
+document.querySelector("#pet-cancel").addEventListener("click", stopEditingPet);
 
 document.querySelector("#logout").addEventListener("click", () => {
   localStorage.removeItem("petHealthToken");
