@@ -155,6 +155,20 @@
   resize: vertical;
   width: 100%;
 }
+.log-form-actions,
+.log-actions {
+  display: flex;
+  gap: 10px;
+}
+.log-form-actions {
+  align-items: center;
+}
+.log-form-actions button:last-child,
+.log-actions button:last-child {
+  background: transparent;
+  border: 1px solid #c7d1c2;
+  color: var(--green);
+}
 .pet-form select {
   background: #fff;
   border: 1px solid #d9ded4;
@@ -197,6 +211,19 @@
   color: var(--ink);
   line-height: 1.6;
   margin: 8px 0 0;
+}
+.log-actions {
+  margin-top: 16px;
+}
+.log-actions button {
+  background: var(--sage);
+  border: 0;
+  color: var(--green);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 12px;
 }
 .empty-state {
   background: #fff;

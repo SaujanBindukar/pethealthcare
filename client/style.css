@@ -167,10 +167,13 @@ nav b {
 .welcome {
   background: #e5eee0;
   padding: 95px max(7vw, 30px);
+  text-align: center;
 }
 .welcome p {
   color: var(--muted);
-  max-width: 380px;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .welcome h2 {
   font-size: clamp(44px, 5vw, 68px);
