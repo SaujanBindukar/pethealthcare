@@ -1,6 +1,8 @@
 const API_BASE = "http://localhost:3000";
 const guideContent = document.querySelector("#guide-content");
-const guideId = new URLSearchParams(window.location.search).get("id");
+const searchParams = new URLSearchParams(window.location.search);
+const guideId = searchParams.get("id");
+const breedSlug = searchParams.get("breed");
 
 function addTextSection(container, section) {
   const article = document.createElement("article");
@@ -32,7 +34,33 @@ function addTextSection(container, section) {
   container.append(article);
 }
 
+function addGuideHeader(container, title, description, imagePath) {
+  if (imagePath) {
+    const image = document.createElement("img");
+    image.className = "guide-hero-image";
+    image.src = imagePath;
+    image.alt = `${title} care guide`;
+    image.addEventListener("error", () => image.remove());
+    container.append(image);
+  }
+
+  const heading = document.createElement("h1");
+  heading.textContent = title;
+  container.append(heading);
+
+  if (description) {
+    const summary = document.createElement("p");
+    summary.textContent = description;
+    container.append(summary);
+  }
+}
+
 async function loadGuide() {
+  if (breedSlug) {
+    await loadBreedGuide();
+    return;
+  }
+
   if (!guideId) {
     guideContent.textContent = "This guide could not be found.";
     return;
@@ -53,9 +81,12 @@ async function loadGuide() {
     const guide = species.find((item) => String(item.id) === guideId);
 
     guideContent.replaceChildren();
-    const heading = document.createElement("h1");
-    heading.textContent = guide ? `${guide.name} care guide` : "Care guide";
-    guideContent.append(heading);
+    addGuideHeader(
+      guideContent,
+      guide ? `${guide.name} care guide` : "Care guide",
+      null,
+      guide?.image_path,
+    );
 
     if (!sections.length) {
       const emptyMessage = document.createElement("p");
@@ -68,6 +99,37 @@ async function loadGuide() {
   } catch (error) {
     console.error(error);
     guideContent.textContent = "We could not load this guide right now.";
+  }
+}
+
+async function loadBreedGuide() {
+  try {
+    const response = await fetch(
+      `${API_BASE}/api/breeds/${encodeURIComponent(breedSlug)}`,
+    );
+    if (!response.ok) throw new Error("Unable to load breed care plan");
+
+    const breed = await response.json();
+    guideContent.replaceChildren();
+    addGuideHeader(
+      guideContent,
+      `${breed.name} care plan`,
+      breed.description,
+      breed.image_path,
+    );
+
+    if (!breed.sections.length) {
+      const emptyMessage = document.createElement("p");
+      emptyMessage.textContent = "No care questions are available yet.";
+      guideContent.append(emptyMessage);
+      return;
+    }
+
+    breed.sections.forEach((section) => addTextSection(guideContent, section));
+  } catch (error) {
+    console.error(error);
+    guideContent.textContent =
+      "We could not load this breed care plan right now.";
   }
 }
 
