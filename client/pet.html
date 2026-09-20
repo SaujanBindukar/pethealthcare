@@ -30,7 +30,7 @@
       <section class="dashboard-view pet-content">
         <section class="pet-heading" aria-labelledby="pet-title">
           <small id="pet-species">PET LOG</small>
-          <h1 id="pet-title">Loading pet...</h1>
+          <h2 id="pet-title">Loading pet...</h2>
           <p
             id="pet-status"
             class="form-status"
@@ -43,6 +43,15 @@
             <small>NEW ENTRY</small>
             <h2>Add a log</h2>
             <form id="log-form" class="pet-form">
+              <label for="log-type">Log type</label>
+              <select id="log-type" required>
+                <option value="Health">Health</option>
+                <option value="Medication">Medication</option>
+                <option value="Appointment">Appointment</option>
+                <option value="Feeding">Feeding</option>
+                <option value="Grooming">Grooming</option>
+                <option value="Other">Other</option>
+              </select>
               <label for="log-entry">What happened?</label>
               <textarea
                 id="log-entry"

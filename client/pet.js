@@ -35,7 +35,7 @@ function renderLogs(logs) {
       undefined,
       { year: "numeric", month: "short", day: "numeric" },
     );
-    item.innerHTML = `<time>${formattedDate}</time><p></p>`;
+    item.innerHTML = `<div class="log-meta"><strong>${log.log_type || "Other"}</strong><time>${formattedDate}</time></div><p></p>`;
     item.querySelector("p").textContent = log.entry;
     logList.append(item);
   });
@@ -81,6 +81,7 @@ logForm.addEventListener("submit", async (event) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
+        log_type: document.querySelector("#log-type").value,
         entry: document.querySelector("#log-entry").value,
         logged_at: document.querySelector("#log-date").value,
       }),
