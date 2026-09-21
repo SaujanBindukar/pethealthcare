@@ -51,7 +51,12 @@
           </p>
         </div>
         <div class="care-grid" id="care-grid"></div>
-        <p class="care-status" id="care-status">Loading care guides...</p>
+        <p
+          class="care-status"
+          id="care-status"
+          role="status"
+          aria-live="polite"
+        >Loading care guides...</p>
       </section>
       <section class="breeds-section" id="breeds">
         <div>
@@ -62,8 +67,17 @@
             from their daily rhythms to the care they thrive on.
           </p>
         </div>
-        <div class="breed-list" id="breed-list">
-          <p class="breed-status" id="breed-status">Loading dog breeds...</p>
+        <div
+          class="breed-list"
+          id="breed-list"
+          aria-live="polite"
+        >
+          <p
+            class="breed-status"
+            id="breed-status"
+            role="status"
+            aria-live="polite"
+          >Loading dog breeds...</p>
         </div>
       </section>
       <section class="services-section" id="services">
@@ -79,8 +93,13 @@
           <button class="scroll-button prev" aria-label="Scroll services left">
             ←
           </button>
-          <div class="service-scroller">
-            <p class="service-status" id="service-status">
+          <div class="service-scroller" aria-live="polite">
+            <p
+              class="service-status"
+              id="service-status"
+              role="status"
+              aria-live="polite"
+            >
               Loading care services...
             </p>
           </div>

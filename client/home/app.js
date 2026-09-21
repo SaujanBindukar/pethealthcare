@@ -129,6 +129,8 @@ async function loadServices() {
         : [
             Object.assign(document.createElement("p"), {
               className: "service-status",
+              role: "status",
+              ariaLive: "polite",
               textContent: "No care services available yet.",
             }),
           ]),
@@ -188,6 +190,8 @@ async function loadBreeds() {
         : [
             Object.assign(document.createElement("p"), {
               className: "breed-status",
+              role: "status",
+              ariaLive: "polite",
               textContent: "No dog breeds available yet.",
             }),
           ]),
