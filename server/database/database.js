@@ -11,6 +11,13 @@ const pool = mysql
     waitForConnections: true,
     connectionLimit: 10,
     decimalNumbers: false,
+    ssl:
+      process.env.MYSQL_SSL === "true"
+        ? {
+            rejectUnauthorized:
+              process.env.MYSQL_SSL_REJECT_UNAUTHORIZED !== "false",
+          }
+        : undefined,
   })
   .promise();
 

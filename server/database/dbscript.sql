@@ -4,9 +4,7 @@
 --
 
 -- --------------------------------------------------------
-CREATE DATABASE `pethealthcare`;
-
-USE `pethealthcare`;
+USE `defaultdb`;
 
 --
 -- Table structure for table `breed_questions`
@@ -16,7 +14,8 @@ CREATE TABLE `breed_questions` (
   `question_id` int NOT NULL,
   `section_id` int NOT NULL,
   `question` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `answer` text COLLATE utf8mb4_general_ci NOT NULL
+  `answer` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`question_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -41,7 +40,9 @@ CREATE TABLE `breed_sections` (
   `section_id` int NOT NULL,
   `breed_id` int NOT NULL,
   `title` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
-  `content` text COLLATE utf8mb4_general_ci
+  `content` text COLLATE utf8mb4_general_ci,
+  PRIMARY KEY (`section_id`),
+  UNIQUE KEY `unique_breed_section` (`breed_id`,`title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -65,7 +66,8 @@ INSERT INTO `breed_sections` (`section_id`, `breed_id`, `title`, `content`) VALU
 CREATE TABLE `care_guides` (
   `id` int NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `image_path` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `image_path` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -90,7 +92,9 @@ CREATE TABLE `care_services` (
   `name` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
   `phone` varchar(32) COLLATE utf8mb4_general_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `display_order` int NOT NULL DEFAULT '0'
+  `display_order` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`service_id`),
+  UNIQUE KEY `uq_care_services_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -114,7 +118,9 @@ CREATE TABLE `dog_breeds` (
   `slug` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
   `name` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `image_url` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `image_url` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`breed_id`),
+  UNIQUE KEY `uq_dog_breeds_slug` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -136,7 +142,9 @@ CREATE TABLE `guide_questions` (
   `id` int NOT NULL,
   `section_id` int NOT NULL,
   `question` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `answer` text COLLATE utf8mb4_general_ci NOT NULL
+  `answer` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_guide_question` (`section_id`,`question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -189,7 +197,9 @@ CREATE TABLE `guide_sections` (
   `id` int NOT NULL,
   `guide_id` int NOT NULL,
   `title` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` text COLLATE utf8mb4_general_ci
+  `description` text COLLATE utf8mb4_general_ci,
+  PRIMARY KEY (`id`),
+  KEY `guide_id` (`guide_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -227,7 +237,8 @@ CREATE TABLE `pets` (
   `species` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `image_url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `image_public_id` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `image_public_id` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`pet_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -251,7 +262,9 @@ CREATE TABLE `pet_logs` (
   `log_type` varchar(32) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Other',
   `entry` text COLLATE utf8mb4_general_ci NOT NULL,
   `logged_at` date NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pet_log_id`),
+  KEY `idx_pet_logs_pet_date` (`pet_id`,`logged_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -272,7 +285,9 @@ CREATE TABLE `users` (
   `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -289,78 +304,6 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `created_at`) VALUE
 (13, 'Saujan', 'aa2@gmail.com', '$2b$10$XjlQ7QYbcClK9uS.Dci9kOeZLzrfTA86/9B4HehRMGd8Vd7Eq8stG', '2026-09-14 14:31:24'),
 (14, 'API Check', 'api-check-20260915@example.com', '$2b$10$uNHbvmXFqdBWJ5FOqrqMbe/aiKsr2/wD.PMxwwzJIKDCEJT1/zU4y', '2026-09-14 14:32:36'),
 (16, 'Hello', 'hello@gmail.com', '$2b$10$xKNIxez1/CMsOuiTp78W1OySlu5Km/Pcro4VcvNYXyKBzkwopXuoS', '2026-09-14 14:33:34');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `breed_questions`
---
-ALTER TABLE `breed_questions`
-  ADD PRIMARY KEY (`question_id`),
-  ADD UNIQUE KEY `unique_section_question` (`section_id`,`question`);
-
---
--- Indexes for table `breed_sections`
---
-ALTER TABLE `breed_sections`
-  ADD PRIMARY KEY (`section_id`),
-  ADD UNIQUE KEY `unique_breed_section` (`breed_id`,`title`);
-
---
--- Indexes for table `care_guides`
---
-ALTER TABLE `care_guides`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `care_services`
---
-ALTER TABLE `care_services`
-  ADD PRIMARY KEY (`service_id`),
-  ADD UNIQUE KEY `uq_care_services_name` (`name`);
-
---
--- Indexes for table `dog_breeds`
---
-ALTER TABLE `dog_breeds`
-  ADD PRIMARY KEY (`breed_id`),
-  ADD UNIQUE KEY `uq_dog_breeds_slug` (`slug`);
-
---
--- Indexes for table `guide_questions`
---
-ALTER TABLE `guide_questions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `section_id` (`section_id`);
-
---
--- Indexes for table `guide_sections`
---
-ALTER TABLE `guide_sections`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `guide_id` (`guide_id`);
-
---
--- Indexes for table `pets`
---
-ALTER TABLE `pets`
-  ADD PRIMARY KEY (`pet_id`);
-
---
--- Indexes for table `pet_logs`
---
-ALTER TABLE `pet_logs`
-  ADD PRIMARY KEY (`pet_log_id`),
-  ADD KEY `idx_pet_logs_pet_date` (`pet_id`,`logged_at`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
