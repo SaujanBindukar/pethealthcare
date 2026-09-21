@@ -45,7 +45,7 @@ cd pethealthcare
 
 ### 2. Create the database
 
-import the database script available in server/database/sbscript.sql
+Import the database script available in `server/database/dbscript.sql`.
 
 ```bash
 mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS pethealthcare;"
@@ -62,7 +62,7 @@ Create `server/.env` with your own MySQL details:
 MYSQL_USER=root
 MYSQL_HOST=localhost
 MYSQL_DATABASE=pethealthcare
-MYSQL_PASSWORD=your_mysql_password or (mysql)
+MYSQL_PASSWORD=your_mysql_password
 MYSQL_PORT=3306
 JWT_SECRET=your_long_random_secret or 9cce84436918c818c66c86e67f5bcb0ad3addf6f417f11e7c8678fdddc1033613d8e0366853873fae50c170c539e2d16
 ```
@@ -88,6 +88,12 @@ Keep this terminal running.
 ### 5. Open the client
 
 Open `client/home/index.html` with the VS Code Live Server extension.
+
+The deployed application is available at:
+
+```text
+https://pethealthcare-murex.vercel.app/
+```
 
 ### 6. Use the application
 
