@@ -6,7 +6,7 @@ const petForm = document.querySelector("#pet-form");
 const petStatus = document.querySelector("#pet-status");
 const petList = document.querySelector("#pet-list");
 const petsStatus = document.querySelector("#pets-status");
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://pethealthcare-mrc6.onrender.com";
 let editingPetId = null;
 
 if (!token || !storedUser) {

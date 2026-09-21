@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://pethealthcare-mrc6.onrender.com";
 const guideContent = document.querySelector("#guide-content");
 const searchParams = new URLSearchParams(window.location.search);
 const guideId = searchParams.get("id");

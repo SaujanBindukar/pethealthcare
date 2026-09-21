@@ -19,7 +19,7 @@ document
     services.scrollBy({ left: 290, behavior: "smooth" }),
   );
 
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://pethealthcare-mrc6.onrender.com";
 const careGrid = document.querySelector("#care-grid");
 const careStatus = document.querySelector("#care-status");
 const serviceScroller = document.querySelector(".service-scroller");

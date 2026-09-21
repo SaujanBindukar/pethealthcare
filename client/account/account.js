@@ -5,7 +5,7 @@ const header = document.querySelector("header");
 const form = document.querySelector("#account-form");
 const nameFields = document.querySelectorAll(".name-field");
 const status = document.querySelector(".form-status");
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://pethealthcare-mrc6.onrender.com";
 
 function updateHeader() {
   header.classList.toggle("scrolled", window.scrollY > 24);

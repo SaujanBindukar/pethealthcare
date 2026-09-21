@@ -1,5 +1,5 @@
 const token = localStorage.getItem("petHealthToken");
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://pethealthcare-mrc6.onrender.com";
 const petId = new URLSearchParams(window.location.search).get("id");
 const petTitle = document.querySelector("#pet-title");
 const petSpecies = document.querySelector("#pet-species");
