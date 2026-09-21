@@ -45,7 +45,7 @@ cd pethealthcare
 
 ### 2. Create the database
 
-Create a database named `pethealthcare`, then import the database script:
+import the database script available in server/database/sbscript.sql
 
 ```bash
 mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS pethealthcare;"
