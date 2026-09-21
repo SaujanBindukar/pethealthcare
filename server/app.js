@@ -11,6 +11,8 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+// Feature APIs are mounted under stable public URL prefixes.
 app.use("/api/auth", authRoutes);
 app.use("/api/pets", petRoutes);
 app.use("/api/breeds", breedRoutes);

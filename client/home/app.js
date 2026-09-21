@@ -81,6 +81,7 @@ async function loadGuides() {
   }
 }
 
+// Convert each provider response into one service card.
 function serviceCard(service, index) {
   const card = document.createElement("article");
   if (service.service_type.toLowerCase().includes("emergency")) {
@@ -145,6 +146,7 @@ function breedCard(breed, index) {
 
   const photo = document.createElement("div");
   photo.className = "breed-photo";
+  // Breed images come from the API; the placeholder handles missing URLs.
   photo.textContent = `${breed.name} image placeholder`;
 
   const imagePath = breed.image_url;

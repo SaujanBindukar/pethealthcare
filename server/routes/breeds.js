@@ -3,6 +3,7 @@ const pool = require("../database/database");
 
 const router = express.Router();
 
+// Return the breed cards shown on the home page.
 router.get("/", async (req, res) => {
   try {
     const [breeds] = await pool.query(
@@ -17,6 +18,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Return one breed with its care sections and questions.
 router.get("/:slug", async (req, res) => {
   try {
     const [breeds] = await pool.query(
@@ -42,6 +44,7 @@ router.get("/:slug", async (req, res) => {
       );
     }
 
+    // Group questions so the client can render each section as one guide block.
     const questionsBySection = new Map();
     questions.forEach((question) => {
       const sectionQuestions =

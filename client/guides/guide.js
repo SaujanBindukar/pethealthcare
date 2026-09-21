@@ -17,6 +17,7 @@ function addTextSection(container, section) {
     article.append(paragraph);
   }
 
+  // Render the same question-and-answer pattern for species and breeds.
   section.questions?.forEach((question) => {
     const questionBlock = document.createElement("div");
     questionBlock.className = "guide-question";
@@ -56,6 +57,7 @@ function addGuideHeader(container, title, description, imagePath) {
 }
 
 async function loadGuide() {
+  // Breed links use the same detail page as the regular care guides.
   if (breedSlug) {
     await loadBreedGuide();
     return;

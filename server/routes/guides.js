@@ -8,6 +8,7 @@ function clientAssetPath(imagePath) {
   return `../shared/assets/${imagePath}`;
 }
 
+// Return the care-library cards and their browser-friendly image paths.
 router.get("/", async (req, res) => {
   try {
     const [guides] = await pool.query(
@@ -25,6 +26,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Return a guide's sections with their related questions and answers.
 router.get("/:id/sections", async (req, res) => {
   try {
     const [sections] = await pool.query(
@@ -38,6 +40,7 @@ router.get("/:id/sections", async (req, res) => {
       "SELECT id, section_id, question, answer FROM guide_questions WHERE section_id IN (?) ORDER BY id",
       [sectionIds],
     );
+    // Group questions by section before sending the nested guide response.
     const questionsBySection = new Map();
     questions.forEach((question) => {
       const sectionQuestions =

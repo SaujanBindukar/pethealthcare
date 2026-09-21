@@ -3,6 +3,7 @@ const pool = require("../database/database");
 
 const router = express.Router();
 
+// Return the veterinary providers displayed in the support section.
 router.get("/", async (req, res) => {
   try {
     const [services] = await pool.query(
