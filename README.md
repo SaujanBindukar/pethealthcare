@@ -92,3 +92,11 @@ Open `client/home/index.html` with the VS Code Live Server extension.
 ### 6. Use the application
 
 Explore and Create an account, log in, add a pet, and start adding health logs.
+<img width="1512" height="908" alt="Screenshot 2026-10-20 at 8 47 26 AM" src="https://github.com/user-attachments/assets/c0aa34c2-d471-4e30-9ca5-ef17d10408e8" />
+<img width="1512" height="908" alt="Screenshot 2026-10-20 at 8 47 35 AM" src="https://github.com/user-attachments/assets/9ccecd6f-bc1c-40af-af96-e62771eda10e" />
+<img width="1512" height="908" alt="Screenshot 2026-10-20 at 8 47 42 AM" src="https://github.com/user-attachments/assets/a0b7688d-fb70-4025-814b-0943acdfd326" />
+<img width="1512" height="908" alt="Screenshot 2026-10-20 at 8 47 49 AM" src="https://github.com/user-attachments/assets/4f1a8d9d-94c4-4d3f-9453-135889c836dc" />
+<img width="1512" height="908" alt="Screenshot 2026-10-20 at 8 47 55 AM" src="https://github.com/user-attachments/assets/18eeeb0c-9f19-495d-81b7-68204df30c87" />
+<img width="1512" height="908" alt="Screenshot 2026-10-20 at 8 48 07 AM" src="https://github.com/user-attachments/assets/f2fa8900-296d-49eb-a0a3-6b3aa1b7704b" />
+<img width="1512" height="908" alt="Screenshot 2026-10-20 at 8 48 13 AM" src="https://github.com/user-attachments/assets/4162eb15-8afe-457d-ac56-975e3ca024c2" />
+
